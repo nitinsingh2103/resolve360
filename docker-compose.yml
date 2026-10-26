@@ -1,0 +1,38 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aicte-resolve360-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+      # - VITE_API_BASE_URL=http://localhost:8000/api # Set when FastAPI backend container is launched
+    restart: unless-stopped
+
+  # Placeholder service ready for future Python FastAPI backend integration
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   container_name: aicte-resolve360-backend
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - DATABASE_URL=postgresql://postgres:postgres@db:5432/aicte_resolve360
+  #   depends_on:
+  #     - db
+
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: aicte-resolve360-db
+  #   environment:
+  #     - POSTGRES_DB=aicte_resolve360
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
